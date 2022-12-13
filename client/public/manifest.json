@@ -1,0 +1,8 @@
+{
+  "short_name": "오늘 하루 고양이와",
+  "name": "오늘 하루 고양이와",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

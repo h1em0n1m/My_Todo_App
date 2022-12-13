@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Gaegu&display=swap");
+
+html {
+  background-image: url(./Img/background.jpg);
+  background-repeat: repeat;
+  background-size: 500px;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  font-family: "Gaegu", cursive;
+  font-size: 20px;
+}
+
+.App {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame {
+  width: 360px;
+  height: 740px;
+  border: 6px dashed black;
+  border-radius: 3%;
+  background-color: white;
+}
+
+.view {
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.view > section {
+  height: 100%;
+}
+
+.circle {
+  margin-left: 50px;
+  margin-bottom: 30px;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 6px dashed black;
+  border-radius: 50%;
+}
+
+h1 {
+  margin: 30px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.notice {
+  margin-bottom: 20px;
+}
