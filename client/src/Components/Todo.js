@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 
 const Todo = ({ name, done, onToggle, onTrash, onRename }) => {
   const [editMode, setEditMode] = useState(false);
-  const [newName, setnewName] = useState(name);
   return (
     <div className="todo_frame">
       <Icon
@@ -16,8 +15,6 @@ const Todo = ({ name, done, onToggle, onTrash, onRename }) => {
           className="edit_form"
           onSubmit={(ev) => {
             ev.preventDefault();
-            onRename(newName);
-            name = newName;
             setEditMode(false);
           }}
           onClick={() => setEditMode(false)}
@@ -26,7 +23,7 @@ const Todo = ({ name, done, onToggle, onTrash, onRename }) => {
             className="edit_input"
             type="text"
             value={name}
-            onChange={(ev) => setnewName(ev.target.value)}
+            onChange={(ev) => onRename(ev.target.value)}
           />
         </form>
       ) : (
