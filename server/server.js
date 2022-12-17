@@ -18,19 +18,19 @@ app.post("/api/todo", (req, res) => {
 });
 
 app.delete("/api/delete/:id", (req, res) => {
-  const idx = req.params.id;
+  const idx = tasks.findIndex(obj => obj.id === req.params.id);
   tasks.splice(idx, 1);
   res.json("todo deleted!");
 });
 
 app.put("/api/update/name/:id", (req, res) => {
-  const idx = req.params.id;
+  const idx = tasks.findIndex(obj => obj.id === req.params.id);
   tasks[idx].name = req.body.name;
   res.json("todo updated!");
 });
 
 app.put("/api/update/check/:id", (req, res) => {
-  const idx = req.params.id;
+  const idx = tasks.findIndex(obj => obj.id === req.params.id);
   tasks[idx].done = req.body.done;
   res.json("Checking!");
 });

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { v4 as uuid } from "uuid";
 import TodoForm from "../Components/TodoForm";
 import Todo from "../Components/Todo";
 import styled from "styled-components";
@@ -99,6 +100,7 @@ const TodoList = () => {
     try {
       const { data } = await axios.get("/api/todos");
       setTasks(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +113,7 @@ const TodoList = () => {
   const addTask = async (name) => {
     try {
       await axios.post("/api/todo", {
+        id: uuid(),
         name,
         done: false,
       });
@@ -120,27 +123,27 @@ const TodoList = () => {
     getData();
   };
 
-  const removeTask = async (idx) => {
+  const removeTask = async (id) => {
     try {
-      await axios.delete(`api/delete/${idx}`);
+      await axios.delete(`api/delete/${id}`);
     } catch (error) {
       console.log(error);
     }
     getData();
   };
 
-  const renameTask = async (idx, newName) => {
+  const renameTask = async (id, newName) => {
     try {
-      await axios.put(`api/update/name/${idx}`, { name: newName });
+      await axios.put(`api/update/name/${id}`, { id: id, name: newName });
     } catch (error) {
       console.log(error);
     }
     getData();
   };
 
-  const updateTaskDone = async (idx, newDone) => {
+  const updateTaskDone = async (id, newDone) => {
     try {
-      await axios.put(`api/update/check/${idx}`, { done: newDone });
+      await axios.put(`api/update/check/${id}`, { id: id, done: newDone });
     } catch (error) {
       console.log(error);
     }
@@ -166,13 +169,13 @@ const TodoList = () => {
       <h2>{getMessage()}</h2>
       <TodoForm onAdd={addTask} />
       <div className="todos_frame">
-        {tasks.map((task, index) => (
+        {tasks.map((task) => (
           <Todo
-            key={index}
+            key={task.id}
             {...task}
-            onRename={(newName) => renameTask(index, newName)}
-            onTrash={() => removeTask(index)}
-            onToggle={(newDone) => updateTaskDone(index, newDone)}
+            onRename={(newName) => renameTask(task.id, newName)}
+            onTrash={() => removeTask(task.id)}
+            onToggle={(newDone) => updateTaskDone(task.id, newDone)}
           />
         ))}
       </div>
